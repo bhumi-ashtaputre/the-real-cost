@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts"
-import { formatCurrency } from "@/lib/utils"
+import { cn, formatCurrency } from "@/lib/utils"
 
 interface CategoryChartProps {
   data: { name: string, value: number }[]
@@ -61,7 +61,7 @@ export default function CategoryChart({ data }: CategoryChartProps) {
                   borderRadius: '8px',
                   color: '#F0EFE8'
                 }}
-                formatter={(val: number) => [formatCurrency(val), "Spend"]}
+                formatter={(val: any) => [formatCurrency(val as number), "Spend"]}
               />
               <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={40}>
                 {chartData.map((entry, index) => (
@@ -78,8 +78,4 @@ export default function CategoryChart({ data }: CategoryChartProps) {
       </CardContent>
     </Card>
   )
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ")
 }
